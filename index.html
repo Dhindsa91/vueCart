@@ -30,66 +30,23 @@
 
 
     <div class="jumbotron" id='app'>
-        <div class="container my-5">
+
+        <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <label>From</label>
 
-                    <select v-model="from" name="" id="" class="form-control my-5">
-                        <option :value="currency.id" v-for="currency in formattedCurrencies">
-                            {{currency.currencyName}}
-                        </option>
+                <div class="col-md-6 offset-md-3">
 
-                    </select>
-
-
-
-
-                </div>
-
-                <div class="col-md-6">
-                    <label>To</label>
-
-                    <select v-model="to" name="" id="" class="form-control my-5">
-                        <option :value="currency.id" v-for="currency in formattedCurrencies">
-                            {{currency.currencyName}}
-                        </option>
-
-                    </select>
-
-
-
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-
-                    <input v-model="amount" type="text" placeholder="Amount" class="form-control my-5"><!--v-model: for any value that changes here it should be set to ammount-->
-
-
-                    <div class="text-center">
-
-                        <button class="btn btn-lg btn-primary">CONVERT</button>
+                    <div v-for="article in articles " class="card">
+                        <Card v-on:delete-article="removeArticle($event)" :title="article.title" :content="article.content"></Card>
+                       
+                       
 
 
                     </div>
-
-
                 </div>
-
-
-
-
-            </div>
-            <div class="row">
-                <div class="col-md-6 offset-md-3"></div>
-                <h1 class="text-center display-2 mt-5">54.03</h1>
-
             </div>
         </div>
     </div>
-
 
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>

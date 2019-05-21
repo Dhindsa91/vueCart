@@ -1,52 +1,60 @@
-new Vue({
-    el: '#app',
-    data: {
+Vue.component('Card', {
 
-        currencies: {},
-        amount: null,
-        from: '',
-        to: '',
-    
-    },
+    props: ['title', 'content'],
 
-    mounted() {
+    data:{},
 
-     this.getCurrencies();
-       
+    template: `<div class="card">
+                        
+    <div class="card-body">
 
-    },
-    computed:{
+        <h3 class="card-title">{{title}}</h3>
 
-        formattedCurrencies(){
+        <div class="card-text">{{content}} </div>
 
-            return Object.values(this.currencies);
-        }
-    },
-    methods:{
-        getCurrencies(){
 
-            const currencies = localStorage.getItem('currencies');
+        <button @click="deleteArticle()" class="btn btn-sm btn-danger">Delete Me </button>
 
-            // if(currencies){
-
-            //     this.currencies = JSON.parse(currencies);
-
-            //     return;
-            // }
-
-            axios.get("https://free.currconv.com/api/v7/currencies?apiKey=do-not-use")
-            .then(res => {
-                console.log(res.data);
-              this.currencies = res.data.results;
-
-              localStorage.setItem("currencies", JSON.stringify(res.data.results)); //this is so there arent many requests made to api 
-
-            })
-          
-
-        }
-
+    </div>
+</div>`,
+methods:{
+    deleteArticle(){
+     this.$emit('delete-article', this.title); //emits custom event for us 
     }
+ },
+
+
+})
+
+
+
+
+
+new Vue({
+
+el: '#app',
+data: {
+    articles: [{
+        title:'ARTICLE 1',
+        content:'ARTUICLE ONE CONTENT'
+    },{
+    title:'ARTICLE 2',
+        content:'ARTUICLE ONE CONTENT'
+    },{
+    title:'ARTICLE 3',
+        content:'ARTUICLE ONE CONTENT'
+    },{
+    title:'ARTICLE 4',
+        content:'ARTUICLE ONE CONTENT'
+    },],
+    
+},
+methods: {
+    removeArticle(event){
+      
+       this.articles =  this.articles.filter(article => article.title != event);
+    }
+}
 
 
 
