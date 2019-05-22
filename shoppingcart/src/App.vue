@@ -13,8 +13,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5 my-5">
-        <Cart></Cart>
+      <div class="col-md-5 my-5" >
+        <Cart v-on:remove-item="removeItem($event)" :items="cart"></Cart>  <!-- Use $event unless you are in a loop -->
       </div>
     </div>
   </div>
@@ -50,6 +50,10 @@ export default {
       if (item) {
         return true;
       }
+    },
+    removeItem($event){
+    this.cart = this.cart.filter(item => item.id != $event.id);
+
     }
   }
 };
