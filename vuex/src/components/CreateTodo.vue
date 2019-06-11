@@ -3,6 +3,7 @@
 <input v-model="todo" @keyup.enter="saveTodo" type="text" placeholder="">
 
 </template>
+
 <script>
 export default {
 

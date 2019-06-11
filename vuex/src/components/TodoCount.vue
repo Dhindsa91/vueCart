@@ -1,11 +1,19 @@
 <template>
     
-    <h1>the total amount of Todos is {{todoCount}}</h1>
+    <h1>the total amount of Todos is {{count}}</h1>
 
 </template>
 <script>
 export default {
-    props: ["todoCount"]
+    props: ["todoCount"],
+    computed:{
+
+        count(){
+
+            return this.$store.getters.todosCount;
+        }
+
+    }
 }
 </script>
 

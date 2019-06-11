@@ -17,15 +17,12 @@ import ListTodos from './components/ListTodos';
 
 export default {
   name: "app",
-  data: () =>({
-   
-  }),
+
   components: {
 
     TodoCount,
     ListTodos,
     CreateTodo
-
 
 
 
@@ -56,11 +53,12 @@ font-size: 22px;
 
 
 }
-ul{
-
+li{
+margin: 10px;
 list-style-type: none;
 background-color: grey;
 padding: 20px;
 font-size: 20px;
+  border-radius: 25px;
 }
 </style>
